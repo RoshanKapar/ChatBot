@@ -1,0 +1,62 @@
+from selenium import webdriver
+import time
+
+from selenium.webdriver.common.keys import Keys
+
+from selenium.webdriver.support.ui import Select
+
+browser=webdriver.Chrome('C:/Users/Acer/Desktop/New folder (2)/chromedriver')
+browser.get('https://www.clickmechanic.com/price-estimates')
+postcode=browser.find_element_by_id('booking_customer_postcode')
+a=input("Enter the postcode")
+postcode.send_keys(a)
+reg=browser.find_element_by_id("booking_car_vrm")
+b=input("Enter the registration number")
+reg.send_keys(b)
+button=browser.find_element_by_name('commit')
+button.send_keys('submit')
+time.sleep(5)
+repair=browser.find_element_by_xpath('//*[@id="v2-work-type-select-page"]/div[1]/div[2]/div[1]')
+repair.click()
+print("1.Clutch replacement")
+print("2.Brake discs and pads replacement - front (both)")
+print("3.Brake discs and pads replacement - rear (both)")
+print("4.Brake pads replacement - rear (all)")
+print("5.Battery replacement (vehicles without start/stop system)")
+print("6.Starter motor replacement")
+print("7.Cylinder head gasket replacement")
+print("8.Water pump replacement")
+print("9.Engine oil & filter replacement")
+x = input("What do you want to do? Max 3 problems(Write number)")
+y=len(x)
+n=0
+if "1"in x:
+    entity=browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div/div[4]/div[2]/div[2]/div/div[1]/span')
+    entity.click()
+if "2"in x:
+    entity2=browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div/div[4]/div[2]/div[3]/div/div[1]/span')
+    entity2.click()
+if "3"in x:
+    entity3=browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div/div[4]/div[2]/div[6]/div/div[1]/span')
+    entity3.click()
+if "4"in x:
+    entity4=browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div/div[4]/div[2]/div[7]/div/div[1]/span')
+    entity4.click()
+if "5"in x:
+    entity5=browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div/div[4]/div[2]/div[11]/div/div[1]/span')
+    entity5.click()
+if "6"in x:
+    entity6=browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div/div[4]/div[2]/div[12]/div/div[1]/span')
+    entity6.click()
+if "7"in x:
+    entity7=browser.find_element_by_xpath('//*[@id="v2-work-page-selection"]/div[1]/div[1]/div/div[4]/div[2]/div[13]/div/div[1]/span')
+    entity7.click()
+if "8"in x:
+    entity8=browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div/div[4]/div[2]/div[13]/div/div[1]/span')
+    entity8.click()
+if "9"in x:
+    entity9=browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/div[2]/div/div[1]/div[1]/div/div[4]/div[2]/div[16]/div/div[1]/span')
+    entity9.click()
+
+
+print("Your Orders have been noted and processed. Please check Chrome and complete your payment")
