@@ -1,0 +1,10 @@
+#The click is after that last line
+This is the video i learned from https://www.youtube.com/watch?v=GJjMjB3rkJM
+This is the website i used=https://www.webuyanycar.com/
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+browser=webdriver.Chrome('C:/Users/Acer/Desktop/New folder (2)/chromedriver')
+browser.get('https://www.webuyanycar.com/')
+vehicleref=browser.find_element_by_id('vehicleReg')
+vehicleref.send_keys("KC52PUO")
