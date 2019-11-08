@@ -1,0 +1,44 @@
+import discord
+import requests
+from discord.ext import commands
+
+bot = commands.Bot(command_prefix='!', description='A bot to help the user choose a car.')
+
+
+@bot.event
+async def on_ready():
+    print('Logged in as')
+    print(bot.user.name)
+    print(bot.user.id)
+    activity = discord.Activity(name='You Pick A Car', type=discord.ActivityType.watching)
+    await bot.change_presence(activity=activity)
+
+
+bot.remove_command('help')
+
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+    else:
+        url = "https://text-similarity-calculator.p.rapidapi.com/stringcalculator.php"
+        x = "Im looking for a brand new family car"
+        y = message.content
+        querystring = {"ftext": x, "stext": y}
+
+        headers = {
+            'x-rapidapi-host': "text-similarity-calculator.p.rapidapi.com",
+            'x-rapidapi-key': "f82dc2642bmsh5f3c835c1328c85p1edc0ajsn17fd52e35d1b"
+        }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+
+        z = len(response.text)
+        y = response.text[498:z - 2]
+
+
+        await message.channel.send(y)
+
+
+bot.run('NjI5NjMyNTA1MzQ3MDQ3NDI0.XZyEZg.lHpd9iUr05IAiS2Ap3lIxun01JM')
