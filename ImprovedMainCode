@@ -1,0 +1,131 @@
+import csv
+from whynot import definition, nat
+
+
+def deduce(c):
+    n=definition(c)
+    with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        x=" "
+        print("According to my bot calculations " + n + " is best for you")
+        print("These are some companies with " + n +" along with affordable prices. Additionally, I only searched diesel vehicle since you are low on budget")
+        for line in csv_reader:
+            if line[1]==x:
+                pass
+            elif n in line[3] and int(line[4])<28000:
+                if "diesel" in line[5]:
+                    print(line[1])
+                    x=(line[1])
+                else:
+                    pass
+        j=input("Do you want me to look for petrol instead?")
+        if "yes" in j:
+            n = definition(c)
+            with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+                csv_reader = csv.reader(csv_file)
+                x = " "
+                for line in csv_reader:
+                    if line[1] == x:
+                        pass
+                    elif n in line[3] and int(line[4]) < 28000:
+                        if "petrol" in line[5]:
+                            print(line[1])
+                            x = (line[1])
+                        else:
+                            pass
+
+        o=(input("Which company shall I select?"))
+        print("Alright "+o+" it is." )
+        with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            for line in csv_reader:
+                if line[1]==o and int(line[4])<28000:
+                    print(line[2])
+
+        b=input(("Reselect Company?(Y/N)"))
+        if "reselect"in b:
+            deduce(f)
+        else:
+            j=" "
+            s=" "
+            P = (input("What model do you want? "))
+            with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+                csv_reader = csv.reader(csv_file)
+                for line in csv_reader:
+                    if line[1]==o and line[2]==P:
+                        j=j+" "
+                    else:
+                        s=s+" "
+                if j!=" ":
+                    print(P + (' Noted'))
+                    print("-------------")
+                    print("Car Finalized")
+                    print("Company : " + o)
+                    print("Model : " + P)
+                else:
+                    v=input("You typed invalid model!, wanna retype?")
+                    if "yes" in v:
+                        deduce(c)
+                    else:
+                        print("Sorry You will have to restart because this is an invalid model!")
+                        deduce(c)
+
+
+
+
+
+def deduce2(c):
+    n=definition(c)
+    with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        x=" "
+        print("According to my bot calculations " + n + " is best for you")
+        print("These are some companies with " +n)
+        for line in csv_reader:
+            if line[1]==x:
+                pass
+            elif n in line[3] and int(line[4])>35000:
+                print(line[1])
+                x=(line[1])
+        o=(input("Which company shall I select?"))
+        print("Alright "+o+" it is." )
+        b=input(("Reselect Company?(Y/N)"))
+        with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            for line in csv_reader:
+                if line[1] == o:
+                    print(line[2])
+        if "reselect"in b:
+            deduce(f)
+        else:
+            j = " "
+            s = " "
+            P = (input("What model do you want? "))
+            with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+                csv_reader = csv.reader(csv_file)
+                for line in csv_reader:
+                    if line[1] == o and line[2] == P:
+                        j = j + " "
+                    else:
+                        s = s + " "
+                if j != " ":
+                    print(P + (' Noted'))
+                    print("-------------")
+                    print("Car Finalized")
+                    print("Company : " + o)
+                    print("Model : " + P)
+                else:
+                    v = input("You typed invalid model!, wanna retype?")
+                    if "yes" in v:
+                        deduce(c)
+                    else:
+                        print("Sorry You will have to restart because this is an invalid model!")
+                        deduce(c)
+
+
+e=(input("Hi so you are looking for a car? Tell me more about your budget and preference"))
+f=nat(e)
+if "low budget" in e or 'affordable' in e or 'low range' in e or 'cheap' in e or 'below' in e:
+    deduce(f)
+else:
+    deduce2(f)
