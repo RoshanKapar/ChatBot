@@ -1,0 +1,413 @@
+####Main Code for this belongs to my teammate ChadWrren,I have edited the code according to what bodytype Iwas assigned to the group#####
+
+
+import discord
+from discord.ext import commands
+
+bot = commands.Bot(command_prefix='!', description='A bot to help the user choose a car.')
+
+
+@bot.event
+async def on_ready():
+    print('Logged in as')
+    print(bot.user.name)
+    print(bot.user.id)
+    activity = discord.Activity(name='You Pick A Car', type=discord.ActivityType.watching)
+    await bot.change_presence(activity=activity)
+
+
+bot.remove_command('help')
+
+
+@bot.event
+async def on_message(message):
+    print(f"{message.channel}: {message.author}: {message.author.name}: {message.content}")
+    sentdex_guild = bot.get_guild(628307955942424595)
+
+    if "saloon" == message.content.lower():
+        await message.channel.send(
+            "Alright a saloon then. What type of fuel do you want it to use? Petrol, Diesel or Electricity?")
+
+        @bot.event
+        async def on_message(message):
+            if message.author == bot.user:
+                return
+            else:
+                if "petrol" == message.content.lower():
+                    await message.channel.send("Petrol Noted.. Do you want 3 doors or 5?")
+
+                    @bot.event
+                    async def on_message(message):
+                        if message.author == bot.user:
+                            return
+                        else:
+                            if "3" == message.content.lower():
+                                await message.channel.send("Okay 3 doors, Whats your budget?")
+
+                                @bot.event
+                                async def on_message(message):
+                                    if message.author == bot.user:
+                                        return
+                                    else:
+                                        x = message.content
+                                        budget = int(x)
+                                        if budget <= 20000:
+                                            await message.channel.send(
+                                                "Finally, What make car do you want? BMW, AUDI, VW or FORD?")
+
+                                            @bot.event
+                                            async def on_message(message):
+                                                if message.author == bot.user:
+                                                    return
+                                                else:
+                                                    if "bmw" == message.content.lower():
+                                                        await message.channel.send("The car for you is a BMW 1 Series Step Auto",
+                                                                                   file=discord.File(
+                                                                                       'BMW1SeriesStepAuto.png'))
+                                                    elif "audi" == message.content.lower():
+                                                        await message.channel.send("Sorry we dont have a car of this type",)
+
+                                                    elif "vw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a Scirocco TSI 180",
+                                                            file=discord.File('Volkswagan Scirocco TSI 180.png'))
+                                                    elif "ford" == message.content.lower():
+                                                        await message.channel.send("The car for you is a Puma",
+                                                                                   file=discord.File('Ford Puma.png'))
+                                                    elif"mercedes"==message.content.lower():
+                                                        await message.channel.send("The car for you is CLC 200K",
+                                                                                   file=discord.File("Mercedes CLC 200k.png"))
+
+                                                    else:
+                                                        await message.channel.send("Please choose a make")
+                                        elif budget > 20000:
+                                            await message.channel.send(
+                                                "Finally, What make car do you want? BMW, AUDI, MERCEDES, VW or FORD?")
+
+                                            @bot.event
+                                            async def on_message(message):
+                                                if message.author == bot.user:
+                                                    return
+                                                else:
+                                                    if "bmw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a BMW 1 Series M M140I",
+                                                            file=discord.File('BMW1seriesM140I.png'))
+                                                    elif "audi" == message.content.lower():
+                                                        await message.channel.send("The car for you is a Audi TT",
+                                                                                   file=discord.File('Audi AUDI TT.png'))
+                                                    elif "vw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "We dont have a car in this range")
+
+                                                    elif "ford" == message.content.lower():
+                                                        await message.channel.send("The car for you is Mustang v8",
+                                                                                   file=discord.File('FordMustangV8.png'))
+                                                    elif "mercedes" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "We dont have a car in this range for Mersedes")
+
+                                                    else:
+                                                        await message.channel.send("Please choose a make")
+                                        else:
+                                            await message.channel.send("Please type in your budget")
+                            elif "5" == message.content.lower():
+                                await message.channel.send("Okay 5 doors, Whats your budget?")
+
+                                @bot.event
+                                async def on_message(message):
+                                    if message.author == bot.user:
+                                        return
+                                    else:
+                                        x = message.content
+                                        budget = int(x)
+                                        if budget <= 20000:
+                                            await message.channel.send(
+                                                "Finally, What make car do you want? BMW, AUDI, VW or FORD?")
+
+                                            @bot.event
+                                            async def on_message(message):
+                                                if message.author == bot.user:
+                                                    return
+                                                else:
+                                                    if "bmw" == message.content.lower():
+                                                        await message.channel.send("The car for you is a BMW 3 Series 320I",
+                                                                                   file=discord.File(
+                                                                                       'BMWSeries 33 20I.png'))
+                                                    elif "audi" == message.content.lower():
+                                                        await message.channel.send("The car for you is a Audi A1",
+                                                                                   file=discord.File('AUDI A1.png'))
+                                                    elif "vw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a Passat Evo 150",
+                                                            file=discord.File('volkswagen Passat EVO 150.png'))
+                                                    elif "ford" == message.content.lower():
+                                                        await message.channel.send("The car for you is the Ford EcoSport Titanium 1.5",
+                                                                                   file=discord.File('ford Ford EcoSport 1.5.png'))
+                                                    else:
+                                                        await message.channel.send("Please choose a make")
+                                        elif budget > 20000:
+                                            await message.channel.send(
+                                                "Finally, What make car do you want? BMW, AUDI, MERCEDES, VW or FORD?")
+
+                                            @bot.event
+                                            async def on_message(message):
+                                                if message.author == bot.user:
+                                                    return
+                                                else:
+                                                    if "bmw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a BMW 4 Series 430I")
+
+                                                    elif "audi" == message.content.lower():
+                                                        await message.channel.send("The car for you is a Audi Q2",
+                                                                                   file=discord.File('AUDI Q2.png'))
+                                                    elif "vw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a Passat 2019",
+                                                            file=discord.File('Volkswagon Passat 2019.png'))
+                                                    elif "ford" == message.content.lower():
+                                                        await message.channel.send("The car for you is the Mondeo Titanium ED",
+                                                                                   file=discord.File('ford Mondeo Titanium ED.png'))
+                                                    elif "mercedes" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is the Mercedes C Class C200",
+                                                            file=discord.File('Mercedes C Class C200.png'))
+                                                    else:
+                                                        await message.channel.send("Please choose a make")
+                                        else:
+                                            await message.channel.send("Please type in your budget.")
+                elif "diesel" == message.content.lower():
+                    await message.channel.send("Okay, Diesel it is. Do you want 3 doors or 5?")
+
+                    @bot.event
+                    async def on_message(message):
+                        if message.author == bot.user:
+                            return
+                        else:
+                            if "3" == message.content.lower():
+                                await message.channel.send("Okay 3 doors, Whats your budget?")
+
+                                @bot.event
+                                async def on_message(message):
+                                    if message.author == bot.user:
+                                        return
+                                    else:
+                                        x = message.content
+                                        budget = int(x)
+                                        if budget <= 20000:
+                                            await message.channel.send(
+                                                "Finally, What make car do you want? BMW, AUDI, VW or FORD?")
+
+                                            @bot.event
+                                            async def on_message(message):
+                                                if message.author == bot.user:
+                                                    return
+                                                else:
+                                                    if "bmw" == message.content.lower():
+                                                        await message.channel.send("The car for you is a BMW 2 Series 218 D",
+                                                                                   file=discord.File(
+                                                                                       'Series 2 218 D.png'))
+                                                    elif "audi" == message.content.lower():
+                                                        await message.channel.send("The car for you is a Audi TT",
+                                                                                   file=discord.File('Audi AUDI TT.png'))
+                                                    elif "vw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a Scirocco",
+                                                            file=discord.File('volkswagen Scirocco.png'))
+                                                    elif "ford" == message.content.lower():
+                                                        await message.channel.send("The car for you is the Scirocco Diesel",
+                                                                                   file=discord.File('ford Scrocco Diesel.png'))
+                                                    else:
+                                                        await message.channel.send("Please choose a make")
+                                        elif budget > 20000:
+                                            await message.channel.send(
+                                                "Finally, What make car do you want? BMW, AUDI, MERCEDES, VW or FORD?")
+
+                                            @bot.event
+                                            async def on_message(message):
+                                                if message.author == bot.user:
+                                                    return
+                                                else:
+                                                    if "bmw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a BMW 4 Series 430d",
+                                                            file=discord.File('BMWSeries 4 420D.png'))
+                                                    elif "audi" == message.content.lower():
+                                                        await message.channel.send("The car for you is a Audi TT Roadster")
+
+                                                    elif "vw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "No cars for Volkswagen in this category ")
+
+                                                    elif "ford" == message.content.lower():
+                                                        await message.channel.send("No car for Ford in this range/category")
+
+                                                    elif "mercedes" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "No car for mercedes in this category")
+
+                                                    else:
+                                                        await message.channel.send("Please choose a make")
+                                        else:
+                                            await message.channel.send("Please type in your budget")
+                            elif "5" == message.content.lower():
+                                await message.channel.send("Okay 5 doors, Whats your budget?")
+
+                                @bot.event
+                                async def on_message(message):
+                                    if message.author == bot.user:
+                                        return
+                                    else:
+                                        x = message.content
+                                        budget = int(x)
+                                        if budget <= 20000:
+                                            await message.channel.send(
+                                                "Finally, What make car do you want? BMW, AUDI, VW or FORD?")
+
+                                            @bot.event
+                                            async def on_message(message):
+                                                if message.author == bot.user:
+                                                    return
+                                                else:
+                                                    if "bmw" == message.content.lower():
+                                                        await message.channel.send("The car for you is a BMW 3 Series 320D",
+                                                                                   file=discord.File(
+                                                                                       'BMWSeries 3 320D.png'))
+                                                    elif "audi" == message.content.lower():
+                                                        await message.channel.send("The car for you is a Audi A3",
+                                                                                   file=discord.File('AUDI A3.png'))
+                                                    elif "vw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a Passat 2.0 Sport TDI",
+                                                            file=discord.File('volkswagen Passat 2.0 Sport TDI.png'))
+                                                    elif "ford" == message.content.lower():
+                                                        await message.channel.send("The car for you is Mondeo TDCI 210",
+                                                                                   file=discord.File('Ford Mondeo TDCI 210.png'))
+                                                    else:
+                                                        await message.channel.send("Please choose a make")
+                                        elif budget > 20000:
+                                            await message.channel.send(
+                                                "Finally, What make car do you want? BMW, AUDI, MERCEDES, VW or FORD?")
+
+                                            @bot.event
+                                            async def on_message(message):
+                                                if message.author == bot.user:
+                                                    return
+                                                else:
+                                                    if "bmw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a BMW 4 Series 420D",
+                                                            file=discord.File('BMWSeries 3 320D.png'))
+                                                    elif "audi" == message.content.lower():
+                                                        await message.channel.send("The car for you is a Audi A3",
+                                                                                   file=discord.File('AUDI A3.png'))
+                                                    elif "vw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a Passat GT120 ps",
+                                                            file=discord.File('volkswagen Passat GT120 PS.png'))
+                                                    elif "ford" == message.content.lower():
+                                                        await message.channel.send("The car for you is the Ford Mondeo",
+                                                                                   file=discord.File('Ford Mondeo.png'))
+                                                    elif "mercedes" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is the Mercedes S Class S350",
+                                                            file=discord.File('Mercedes S Class S350.png'))
+                                                    else:
+                                                        await message.channel.send("Please choose a make")
+                                        else:
+                                            await message.channel.send("Please type in your budget")
+                            else:
+                                await message.channel.send("Please choose how many doors you want.")
+                elif "electricity" == message.content.lower():
+                    await message.channel.send("Okay, Electricity it is. Do you want 3 doors or 5?")
+
+                    @bot.event
+                    async def on_message(message):
+                        if message.author == bot.user:
+                            return
+                        else:
+                            if "3" == message.content.lower():
+                                await message.channel.send("Okay 3 doors, What is your budget?")
+
+                                @bot.event
+                                async def on_message(message):
+                                    if message.author == bot.user:
+                                        return
+                                    else:
+                                        x = message.content
+                                        budget = int(x)
+                                        if budget > 20000:
+                                            await message.channel.send(
+                                                "Sorry the only 3 door we have is a BMW. Is that okay?")
+
+                                            @bot.event
+                                            async def on_message(message):
+                                                if message.author == bot.user:
+                                                    return
+                                                else:
+                                                    if "yes" == message.content.lower():
+                                                        await message.channel.send("Theere is no car in this BMW category",
+                                                                                   )
+                                                    elif "no" == message.content.lower():
+                                                        await message.channel.send("Sorry we dont have a car for you.")
+                                                    else:
+                                                        await message.channel.send("Please choose a car make")
+                                        if budget < 20000:
+                                            await message.channel.send(
+                                                "Sorry we dont have any electric cars under £20,000")
+
+
+                            elif "5" == message.content.lower():
+                                await message.channel.send("Okay 5 doors, What is your budget?")
+
+                                @bot.event
+                                async def on_message(message):
+                                    if message.author == bot.user:
+                                        return
+                                    else:
+                                        x = message.content
+                                        budget = int(x)
+                                        if budget > 20000:
+                                            await message.channel.send(
+                                                "Finally, What make car do you want? BMW, MERCEDES or VW")
+
+                                            @bot.event
+                                            async def on_message(message):
+                                                if message.author == bot.user:
+                                                    return
+                                                else:
+                                                    if "bmw" == message.content.lower():
+                                                        await message.channel.send("The car for you is a BMW 3 Series 330E",
+                                                                                   file=discord.File('BMWSeries 3 330E.png'))
+                                                    elif "mercedes" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a Mercedes E Class E350E",
+                                                            file=discord.File('Mercedes E Class E350E.png'))
+                                                    elif "vw" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a Passat GTE Advance",
+                                                            file=discord.File('Passet GTE Advance.png'))
+                                                    elif "ford" == message.content.lower():
+                                                        await message.channel.send(
+                                                            "The car for you is a Mondeo Electric",
+                                                            file=discord.File('Ford Mondeo electric.png'))
+                                                    else:
+                                                        await message.channel.send("Please choose a car make")
+                                        if budget < 20000:
+                                            await message.channel.send(
+                                                "Sorry we dont have any electric cars under £20,000")
+
+                            else:
+                                await message.channel.send("Please choose how many doors you want.")
+                else:
+                    await message.channel.send("Please choose a fuel type")
+
+    else:
+        if message.author == bot.user:
+            return
+        else:
+            await message.channel.send("What type of car do you want?")
+
+
+bot.run('NjI5NjMyNTA1MzQ3MDQ3NDI0.XZyEZg.lHpd9iUr05IAiS2Ap3lIxun01JM')
