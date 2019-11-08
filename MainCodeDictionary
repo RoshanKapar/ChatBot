@@ -1,0 +1,22 @@
+# you will need this as well, name it whynot.py
+
+def definition(value):
+    Search={'family':'Sedan','family and space':'SUV','storage':'Pickup',"others":"Van",
+            "family and space and storage":"Hatchback","fancy":"Convertable","only for 2":"Couple"}
+    x=Search.get(value)
+    return x
+
+def nat(e):
+    if 'family' in e:
+        l="family"
+    elif "family" in e or "space" in e or "comfortable" in e:
+        l="family and space"
+    elif "storage" in e or "business" in e:
+        l="storage"
+    elif "public" in e or "van" in e:
+        l="others"
+    elif 'fancy' in e or"opens from top" in e or"convertible" in e:
+        l="fancy"
+    elif "me and my" in e or"couple" in e or "just married"in e:
+        l="only for 2"
+    return l
