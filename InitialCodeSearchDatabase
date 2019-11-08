@@ -1,0 +1,10 @@
+import csv
+
+with open('C:/Users/Acer/Desktop/us-car-models-data-master/1992.csv','r') as csv_file:
+    csv_reader=csv.reader(csv_file)
+    x=input("Enter a company")
+    y=input('Enter the bodytype')
+
+    for line in csv_reader:
+        if x==line[1] and "Pickup" in line[3]:
+            print(line[2])
