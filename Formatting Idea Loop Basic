@@ -1,0 +1,15 @@
+def formatt(list):
+    output=" "
+    x=1
+    print("Car Names")
+    print("_"*11)
+    for item in list:
+        output+="\n"+str(x)+"| " + item
+        x=x+1
+    return output
+
+
+list=["nepal","hello","hi","How are you doing","Im doing Fine"]
+o=formatt(list)
+print(o)
+print("_"*11)
