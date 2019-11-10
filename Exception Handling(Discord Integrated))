@@ -1,0 +1,31 @@
+def imageSearch():
+    @bot.event
+    async def on_message(message):
+        if message.author == bot.user:
+            return
+        else:
+            search_term = message.content
+            try:
+                subscription_key = 'b1d84d5a364c97ab7deb697231de4c'
+                search_term = message.content
+                client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
+                image_results = client.images.search(query=search_term)
+                if image_results.value:
+                    first_image_result = image_results.value[0]
+                    await message.channel.send(format(first_image_result.content_url))
+                    await main()
+                else:
+                    await message.channel.send("Couldn't find image results!")
+            except IOError:
+                            await message.channel.send("An error occured while trying to reach the Microsoft API")
+            except Exception:
+                await message.channel.send("An error occured while trying to reach the Microsoft API\nTrying different way to get image! ")
+                subscription_key = 'b2638a28ffcf4f109e3f535b1104f435'
+                client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
+                image_results = client.images.search(query=search_term)
+                if image_results.value:
+                    first_image_result = image_results.value[0]
+                    await message.channel.send(format(first_image_result.content_url))
+                    await main()
+                else:
+                    await message.channel.send("Couldn't find image results!")
