@@ -1,3 +1,4 @@
+#This code will Book You A Mechanic and have you called/emailed.
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
@@ -5,15 +6,22 @@ from selenium.webdriver.support.ui import Select
 browser=webdriver.Chrome('C:/Users/Acer/Desktop/New folder (2)/chromedriver')
 browser.get('https://docs.google.com/forms/d/e/1FAIpQLSfwm-zzPi8Cv8jwsQ9G8whWVL6uEPH6UPBdfv5FsuXLOpdTgw/viewform')
 name=browser.find_element_by_name('entry.903722920')
-name.send_keys("Lady Wady")
+namekey=input("Please Enter a Name")
+name.send_keys(namekey)
 email=browser.find_element_by_name('entry.181354507')
+emailkey=input("Enter your Email)
+email.send_keys(emailkey)
 number=browser.find_element_by_name('entry.1384446626')
-number.send_keys('01305219860')
+numberkeys=input("Enter your number")
+number.send_keys('numberkeys')
 postcode=browser.find_element_by_name('entry.59934193')
-postcode.send_keys('CV15FB')
+postcodekeys=input("Enter a postcode")
+postcode.send_keys('postcodekeys')
 reg=browser.find_element_by_name('entry.1243460365')
-reg.send_keys("KC52PUO")
+regkeys=input("Enter you Vehicle Registration number")
+reg.send_keys("regkeys")
 Problem=browser.find_element_by_name("entry.1747051028")
-Problem.send_keys("My engine wont start")
+problemkeys=input("Please explain your problem")  
+Problem.send_keys("problemkeys")
 submit=browser.find_element_by_xpath('//*[@id="mG61Hd"]/div/div[2]/div[3]/div[1]/div[1]/div')
 submit.click()
