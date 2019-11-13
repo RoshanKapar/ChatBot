@@ -1,3 +1,4 @@
+#Parts of the code with Exception Handling Involved(Discord Integrated)################################################################
 def imageSearch():
     @bot.event
     async def on_message(message):
