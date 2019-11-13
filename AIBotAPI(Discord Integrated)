@@ -1,3 +1,4 @@
+# Code uses a AI API to do casual conversations with the user
 import discord
 import requests
 from discord.ext import commands
