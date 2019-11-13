@@ -14,3 +14,47 @@ list=["nepal","hello","hi","How are you doing","Im doing Fine"]
 o=formatt(list)
 print(o)
 print("_"*11)
+
+#Part@ formatting
+
+
+ if line[1] == o and P == line[2] and price == line[4]:
+                                                            await message.channel.send(P + (' Noted'))
+                                                            await message.channel.send("-------------")
+                                                            await message.channel.send("Car Finalized")
+                                                            await message.channel.send("Company : " + o)
+                                                            await message.channel.send("Model : " + P)
+                                                            await message.channel.send("Price : £ " + str(price))
+                                                            search_term = o + " " + P
+                                                            subscription_key = 'b2638a28ffcf4f109e3f535b1104f435'
+                                                            search_term = message.content
+                                                            client = ImageSearchAPI(
+                                                                CognitiveServicesCredentials(subscription_key))
+                                                            image_results = client.images.search(query=search_term)
+                                                            if image_results.value:
+                                                                first_image_result = image_results.value[0]
+                                                                await message.channel.send(
+                                                                    format(first_image_result.content_url))
+                                                                await main()
+                                                        else:
+                                                            if t == "Invalid Input restarting the Bot!":
+                                                                pass
+                                                            else:
+                                                                await message.channel.send(
+                                                                    "Invalid Input restarting the Bot!")
+                                                                t = "Invalid Input restarting the Bot!"
+                                                                await main()
+                                                                
+#Part 3 Formatting
+  if message.content.lower() == "hi" or message.content.lower() == "hey" or message.content.lower() == "hello":
+                await message.channel.send("Hi! There are a few things i can do,\n1.|Have a general chat with me \n2.|Search for a Car/Buy,\n3.|Search the internet for images or look for a car dealership near you.\nTIP- Just type Image search, Dealership Finder or Car Search at any time.")
+            elif message.content.lower() == "image search":
+                await message.channel.send("Okay so you want to search the internet for an image.")
+                await message.channel.send("What are you searching for?")
+                imageSearch()
+            elif message.content.lower() == "car search":
+                await message.channel.send("Hi so you are looking for a car? Tell me more about your budget and preference!")
+                @bot.event
+                async def on_message(message):
+                    if message.author == bot.user:
+                        return
