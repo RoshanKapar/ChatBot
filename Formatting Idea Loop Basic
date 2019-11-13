@@ -1,3 +1,4 @@
+#Code formatts the outputs (This is initial)
 def formatt(list):
     output=" "
     x=1
