@@ -1,3 +1,5 @@
+# CODE TO RETRIVE A Quote for CAR Repairs
+# Code Uses Selenium Library that Was package installed using PIP#
 from selenium import webdriver
 import time
 
