@@ -1,6 +1,9 @@
 # ChatBot
 The ChatBot Project
 
+
+![photo1](https://github.coventry.ac.uk/storage/user/3534/files/6daafd80-0659-11ea-8b0f-f6abe24d282b)
+
 Features of the Carbot:
 1. Talk Naturally with the User(Uses NLP API)
  - The API is pretty smart and basically has intellectual responces to your queries.This is a great API that we decided to intergrate     when the user wants to talk casually and not about cars.
@@ -24,6 +27,8 @@ Features of the Carbot:
  - Searches an Image on Bing and responds with a .jpg file. Uses microsoft asure api.
 
 6. Using Selenium Allow you to sell your car at buyanycar.
+
+
 
 
 The GIT inculdes all the codes (Initial Idea and final form). I have imported:
