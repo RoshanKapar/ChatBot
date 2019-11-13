@@ -3,15 +3,32 @@ The ChatBot Project
 
 Features of the Carbot:
 1. Talk Naturally with the User(Uses NLP API)
+ - The API is pretty smart and basically has intellectual responces to your queries.This is a great API that we decided to intergrate     when the user wants to talk casually and not about cars.
+
 2. Suggest You a car by searching the Database
+    - Our code finds the difference between different day to day terms . For example:
+     A User Input= Family Car 
+     Response-Sedan Is Best for you!
+      
+     B User input- Cheap car with space for family and good storage.
+     Response- Alright! I think Hatchback is the best for you .Additionally, I searched only diesel because you mentioned cheap.
+    
+
 3. Book you a mechanic Call/Email.
+- Uses Selenium to auto complete and embedd user responce to the webpage.
+
 4. Provide you a quote and payment option for your car repair/maintainance.
+ - Uses Selenium to do all the automation clicks and press to get you a quote.
+ 
 5. Use an image API to search spectifc terms.
+ - Searches an Image on Bing and responds with a .jpg file. Uses microsoft asure api.
+
 6. Using Selenium Allow you to sell your car at buyanycar.
 
 
 The GIT inculdes all the codes (Initial Idea and final form). I have imported:
-1. CSV
+1. CSV 
+   CSV Documentation-https://docs.python.org/3/library/csv.html
 2.Selenium
 3 Maths
 4. Xlrx
