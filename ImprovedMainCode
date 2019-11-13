@@ -1,3 +1,5 @@
+# This is the main code improved for minor errors and conflicts#########################################
+#Imports CSV using PIP
 import csv
 from whynot import definition, nat
 
