@@ -1,6 +1,6 @@
-####Main Code for this belongs to my teammate ChadWrren,I have edited the code according to what bodytype Iwas assigned to the group#####
+####Main Code for this belongs to my teammate ChadWrren,I have edited the code according to what bodytype I was assigned to the group#####
 
-
+####################################START OF CHAD's CODE###############################################################################
 import discord
 from discord.ext import commands
 
@@ -17,7 +17,7 @@ async def on_ready():
 
 
 bot.remove_command('help')
-
+#END OF CHAD CODE#####################################################################################################
 
 @bot.event
 async def on_message(message):
@@ -410,4 +410,4 @@ async def on_message(message):
             await message.channel.send("What type of car do you want?")
 
 
-bot.run('NjI5NjMyNTA1MzQ3MDQ3NDI0.XZyEZg.lHpd9iUr05IAiS2Ap3lIxun01JM')
+bot.run('') # THE DISCORD BOT TOKEN
