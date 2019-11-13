@@ -1,5 +1,7 @@
-import csv
+# Initial Code to Pull Data Out of our CSV Car DataBase
+# Uses CSV that was imported using PIP python.
 
+import csv
 with open('C:/Users/Acer/Desktop/us-car-models-data-master/1992.csv','r') as csv_file:
     csv_reader=csv.reader(csv_file)
     x=input("Enter a company")
