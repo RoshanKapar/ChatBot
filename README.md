@@ -30,12 +30,19 @@ The GIT inculdes all the codes (Initial Idea and final form). I have imported:
 1. CSV 
    CSV Documentation-https://docs.python.org/3/library/csv.html
 2.Selenium
+   Selenium Documentation- https://www.seleniumhq.org/
 3 Maths
+   Owned by Python Library
 4. Xlrx
+   Owned by Python Library
 5.Googlemaps
+   Google Places API-https://developers.google.com/places/web-service/intro
 6.MicrosoftAsure
+   Documentation-https://azure.microsoft.com/en-gb/services/cognitive-services/bing-image-search-api/
 7.Discord
+   Discord Import Documentation- https://discord.js.org/#/
 8.NLP API
+   Adapted from Rapid API Website.
 
 Additionally, the main contributors of my project were me and chad. I have clearly mentioned for each code with comment what is my work and what is my teammate's work. Overall, I did much of the coding work in the group and chad integrated that Python code to Discord.
 
