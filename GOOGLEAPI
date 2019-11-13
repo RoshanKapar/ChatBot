@@ -1,0 +1,19 @@
+#PythonCode to Extract Google API
+
+import googlemaps
+import time
+
+
+API_KEY = ''#API Key goes here
+gmaps = googlemaps.Client(key=API_KEY)
+time.sleep(3)
+
+places_result = gmaps.places_nearby(location='52.408116,-1.508686', radius=4000, open_now=False, type='Hotels')
+for place in places_result['results']:
+    mainidentifier = place['place_id']
+    requiredstuff = ['name', 'formatted_phone_number', 'website','rating']
+    places_details = gmaps.place(place_id=mainidentifier, fields=requiredstuff)
+    x=len(places_details)
+    print(x)
+    print(places_details)
+
