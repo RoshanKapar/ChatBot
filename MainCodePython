@@ -1,4 +1,5 @@
-#name it testing 3
+#Our Main Initial Code in Python Format (Initial)
+# Uses CSV that was Imported using PIP
 
 import csv
 from whynot import definition, nat
