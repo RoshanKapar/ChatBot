@@ -1,3 +1,4 @@
+#The main codes needs to have this code to understand User's language and the main code to run"
 # you will need this as well, name it whynot.py
 
 def definition(value):
