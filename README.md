@@ -30,6 +30,11 @@ Features of the Carbot:
 
 
 
+![photo2](https://github.coventry.ac.uk/storage/user/3534/files/93380700-0659-11ea-9ce9-95fb1337108f)
+
+
+
+
 
 The GIT inculdes all the codes (Initial Idea and final form). I have imported:
 1. CSV 
