@@ -1,6 +1,5 @@
-#The click is after that last line
-This is the video i learned from https://www.youtube.com/watch?v=GJjMjB3rkJM
-This is the website i used=https://www.webuyanycar.com/
+#Initial code to work with selenium
+#This is the website that my selenium code opens=https://www.webuyanycar.com/
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
