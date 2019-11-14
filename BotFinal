@@ -1,0 +1,305 @@
+import discord
+from discord.ext import commands
+import csv
+import requests
+from whynot import definition, nat
+from azure.cognitiveservices.search.imagesearch import ImageSearchAPI
+from msrest.authentication import CognitiveServicesCredentials
+
+
+bot = commands.Bot(command_prefix='!', description='A bot to help the user choose a car.')
+
+
+@bot.event
+async def on_ready():
+    print('Logged in as')
+    print(bot.user.name)
+    print(bot.user.id)
+    activity = discord.Activity(name='Robot TV', type=discord.ActivityType.watching)
+    await bot.change_presence(activity=activity)
+    await main()
+
+
+def imageSearch():
+    @bot.event
+    async def on_message(message):
+        if message.author == bot.user:
+            return
+        else:
+            search_term = message.content
+            try:
+                subscription_key = ''
+                search_term = message.content
+                client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
+                image_results = client.images.search(query=search_term)
+                if image_results.value:
+                    first_image_result = image_results.value[0]
+                    await message.channel.send(format(first_image_result.content_url))
+                    await main()
+                else:
+                    await message.channel.send("Couldn't find image results!")
+            except IOError:
+                            await message.channel.send("An error occured while trying to reach the Microsoft API")
+            except Exception:
+                await message.channel.send("An error occured while trying to reach the Microsoft API\nTrying different way to get image! ")
+                subscription_key = ''
+                client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
+                image_results = client.images.search(query=search_term)
+                if image_results.value:
+                    first_image_result = image_results.value[0]
+                    await message.channel.send(format(first_image_result.content_url))
+                    await main()
+                else:
+                    await message.channel.send("Couldn't find image results!")
+
+
+
+
+
+
+
+@bot.event
+async def deduce2(c, message):
+    n=definition(c)
+    with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        x=" "
+        await message.channel.send("Ive had a look for you and I think " + n + " is best for you")
+        await message.channel.send("These are some companies with " +n)
+        g=0
+        for line in csv_reader:
+            if line[1]==x:
+                pass
+            elif n in line[3] and int(line[4])>35000:
+                await message.channel.send(str(g)+"|"+line[1])
+                g=g+1
+                x=line[1]
+        await message.channel.send("Which company shall I select?")
+        @bot.event
+        async def on_message(message):
+            if message.author == bot.user:
+                return
+            else:
+                o = message.content.lower()
+                await message.channel.send("Alright " + o + " it is.")
+                await message.channel.send("Reselect Company?(Y/N)")
+                @bot.event
+                async def on_message(message):
+                    if message.author == bot.user:
+                        return
+                    else:
+                        b = message.content.lower()
+                        if "reselect" in b:
+                            await deduce(c,message)
+                        else:
+                            await message.channel.send("Here are some models in your category")
+                            with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+                                csv_reader = csv.reader(csv_file)
+                                g=1
+                                for line in csv_reader:
+                                    if line[1] == o and n in line[3]:
+                                        await message.channel.send(str(g)+"|"+line[2])
+                                        g = g + 1
+                            await message.channel.send("What model do you want?")
+                            @bot.event
+                            async def on_message(message):
+                                if message.author == bot.user:
+                                    return
+                                else:
+                                    P = message.content.lower()
+                                    with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv',
+                                              'r') as csv_file:
+                                        csv_reader = csv.reader(csv_file)
+                                        for line in csv_reader:
+                                            if line[1] == o and P == line[2]:
+                                                price = line[4]
+                                        with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+                                            csv_reader = csv.reader(csv_file)
+                                            t = " "
+                                            for line in csv_reader:
+                                                if line[1] == o and P == line[2] and price == line[4]:
+                                                    await message.channel.send(P + (' Noted'))
+                                                    await message.channel.send("-------------")
+                                                    await message.channel.send("Car Finalized")
+                                                    await message.channel.send("Company : " + o)
+                                                    await message.channel.send("Model : " + P)
+                                                    await message.channel.send("Price : £ " + str(price))
+                                                    search_term = o + " " + P
+                                                    subscription_key = 'b2638a28ffcf4f109e3f535b1104f435'
+                                                    search_term = message.content
+                                                    client = ImageSearchAPI(
+                                                        CognitiveServicesCredentials(subscription_key))
+                                                    image_results = client.images.search(query=search_term)
+                                                    if image_results.value:
+                                                        first_image_result = image_results.value[0]
+                                                        await message.channel.send(
+                                                            format(first_image_result.content_url))
+                                                        await main()
+                                                else:
+                                                    if t == "Invalid Input restarting the Bot!":
+                                                        pass
+                                                    else:
+                                                        await message.channel.send("Invalid Input restarting the Bot!")
+                                                        t="Invalid Input restarting the Bot!"
+                                                        await main()
+
+
+
+
+@bot.event
+async def deduce(c, message):
+    n=definition(c)
+    with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        x=" "
+        await message.channel.send("According to my bot calculations " + n + " is best for you")
+        await message.channel.send("These are some companies with " + n +" along with affordable prices. Additionally, I only searched diesel vehicle since you are low on budget")
+        for line in csv_reader:
+            if line[1]==x:
+                pass
+            elif n in line[3] and int(line[4])<28000:
+                g=1
+                if "diesel" in line[5]:
+                    await message.channel.send(str(g)+"|"+line[1])
+                    g=g+1
+                    x=line[1]
+                else:
+                    pass
+        await message.channel.send("Do you want me to look for petrol instead?")
+        @bot.event
+        async def on_message(message):
+            if message.author == bot.user:
+                return
+            else:
+                j = message.content.lower()
+                if "yes" in j:
+                    n = definition(c)
+                    with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+                        csv_reader = csv.reader(csv_file)
+                        x = " "
+                        for line in csv_reader:
+                            if line[1] == x:
+                                pass
+                            elif n in line[3] and int(line[4]) < 28000:
+                                g=1
+                                if "petrol" in line[5]:
+                                    await message.channel.send(str(g)+"|"+line[1])
+                                    g=g+1
+                                else:
+                                    pass
+                await message.channel.send("Which company shall I select?")
+                @bot.event
+                async def on_message(message, n):
+                    if message.author == bot.user:
+                        return
+                    else:
+                        o = message.content.lower()
+                        await message.channel.send("Alright " + o + " it is.")
+                        with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv', 'r') as csv_file:
+                            csv_reader = csv.reader(csv_file)
+                            for line in csv_reader:
+                                g=0
+                                if line[1] == o and int(line[4]) < 28000 and n in line[3]:
+                                    await message.channel.send(str(g)+"|"+line[2])
+                                    g=g+1
+                        await message.channel.send("Reselect Company?(Y/N)")
+                        @bot.event
+                        async def on_message(message):
+                            if message.author == bot.user:
+                                return
+                            else:
+                                b = message.content.lower()
+                                if "reselect" in b:
+                                    await deduce(c,message)
+                                else:
+                                    await message.channel.send("What model do you want")
+                                    @bot.event
+                                    async def on_message(message):
+                                        if message.author == bot.user:
+                                            return
+                                        else:
+                                            P = message.content.lower()
+                                            with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv',
+                                                      'r') as csv_file:
+                                                csv_reader = csv.reader(csv_file)
+                                                for line in csv_reader:
+                                                    if line[1] == o and P == line[2]:
+                                                        price = line[4]
+                                                with open('C:/Users/Acer/Desktop/UPDATED DATABASE/2019.csv',
+                                                          'r') as csv_file:
+                                                    csv_reader = csv.reader(csv_file)
+                                                    t = " "
+                                                    for line in csv_reader:
+                                                        if line[1] == o and P == line[2] and price == line[4]:
+                                                            await message.channel.send(P + (' Noted'))
+                                                            await message.channel.send("-------------")
+                                                            await message.channel.send("Car Finalized")
+                                                            await message.channel.send("Company : " + o)
+                                                            await message.channel.send("Model : " + P)
+                                                            await message.channel.send("Price : £ " + str(price))
+                                                            search_term = o + " " + P
+                                                            subscription_key = ''
+                                                            search_term = message.content
+                                                            client = ImageSearchAPI(
+                                                                CognitiveServicesCredentials(subscription_key))
+                                                            image_results = client.images.search(query=search_term)
+                                                            if image_results.value:
+                                                                first_image_result = image_results.value[0]
+                                                                await message.channel.send(
+                                                                    format(first_image_result.content_url))
+                                                                await main()
+                                                        else:
+                                                            if t == "Invalid Input restarting the Bot!":
+                                                                pass
+                                                            else:
+                                                                await message.channel.send(
+                                                                    "Invalid Input restarting the Bot!")
+                                                                t = "Invalid Input restarting the Bot!"
+                                                                await main()
+
+
+@bot.event
+async def main():
+    @bot.event
+    async def on_message(message):
+        if message.author == bot.user:
+            return
+        else:
+            if message.content.lower() == "hi" or message.content.lower() == "hey" or message.content.lower() == "hello":
+                await message.channel.send("Hi! There are a few things i can do,\n1.|Have a general chat with me \n2.|Search for a Car/Buy,\n3.|Search the internet for images or look for a car dealership near you.\nTIP- Just type Image search, Dealership Finder or Car Search at any time.")
+            elif message.content.lower() == "image search":
+                await message.channel.send("Okay so you want to search the internet for an image.")
+                await message.channel.send("What are you searching for?")
+                imageSearch()
+            elif message.content.lower() == "car search":
+                await message.channel.send("Hi so you are looking for a car? Tell me more about your budget and preference!")
+                @bot.event
+                async def on_message(message):
+                    if message.author == bot.user:
+                        return
+                    else:
+                        e = message.content.lower()
+                        f = nat(e)
+                        if "low budget" in e or 'affordable' in e or 'low range' in e or 'cheap' in e or 'below' in e:
+                            await deduce(f, message)
+                        else:
+                            await deduce2(f, message)
+            elif message.content.lower() == "dealership finder":
+                await message.channel.send("Okay so you want to find the nearest dealership to you.")
+            else:
+                x = message.content
+                url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
+                querystring = {"bid": "178", "key": "sX5A2PcYZbsN5EY6", "uid": "mashape", "msg": x}
+
+                headers = {
+                    'x-rapidapi-host': "acobot-brainshop-ai-v1.p.rapidapi.com",
+                    'x-rapidapi-key': "" API KEY
+                }
+                response = requests.request("GET", url, headers=headers, params=querystring)
+                z = len(response.text)
+                y = response.text[8:z - 2]
+
+                await message.channel.send(y)
+
+
+bot.run('') Token
